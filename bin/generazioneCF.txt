@@ -1,0 +1,29 @@
+GENERAZIONE C.F.
+
+-COGNOME (3 lettere)
+	-prendo le prime 3 consonanti del cognome in ordine
+	-se ha meno di 3 consonanti prendo anche le vocali
+	-vocali sempre in ordine, ma dopo le consonanti (ROSI = RSO)
+-NOME (3 lettere)
+	-prendo le prime 3 consonanti del nome in ordine
+	-se ha 4 ho più consonanti prendo la prima, la terza e la quarta (GIANFRANCO = GFR)
+	-se non ha abbastanza consonanti prendo le vocali come nel cognome
+-DATA DI NASCITA E SESSO (5 caratteri)
+	-ANNO DI NASCITA (2 cifre)
+		-ultime 2 cifre dell'anno di nascita
+	-MESE DI NASCITA (1 lettera)
+		-ogni mese ha una lettera (vedi tabella)
+	-GIORNO E SESSO (2 cifre)
+		-prendo giorno di nascita (aggiungo 0 davanti se il giorno è una sola cifra)
+		-aggiungo 40 al giorno se femmina
+-COMUNE DI NASCITA (4 caratteri)
+	-utilizzo la tabella
+-CARATTERE DI CONTROLLO (1 lettera)
+	-divido il codice in base alla posizione dei caratteri (pari o dispari)
+	-converto ogni carattere in numeri secondo le tabelle 
+	-sommo tutti i numeri e divido il risultato per 26
+	-prendo il resto della divisione e lo converto in lettera con la tabella
+
+-OMOCODIA (stesso codice per 2 persone)
+	-sostituisco il primo numero da destra con una lettera seguendo la tabella
+	-ricalcolo il carattere di controllo
