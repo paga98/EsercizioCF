@@ -55,7 +55,7 @@ public class APXMLManagerWriter<T> extends APXMLManagerBase<T> {
 	        	DOMSource domSource = new DOMSource(document);
 	        	StreamResult streamResult = new StreamResult(new File(this.filePath));
 	            transformer.transform(domSource, streamResult);
-	            System.out.println("Done");
+	            System.out.println("Scrittura terminata");
 	        }
 	        catch(Exception ex) {
 	        	return false;

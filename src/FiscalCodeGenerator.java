@@ -1,6 +1,3 @@
-import java.util.Calendar;
-import java.util.Date;
-
 public class FiscalCodeGenerator {
 
 	public static final char VOWELS[] = { 'A', 'E', 'I', 'O', 'U' };
@@ -90,17 +87,17 @@ public class FiscalCodeGenerator {
 	}
 
 	private boolean genDate(Person p, StringBuffer fc) {
-
-		if (checkIfDateIsCorrect(p.getDateOfBirth())) {
-			if((p.getDateOfBirth().getYear() % 100)<10) fc.append(0);
-			fc.append(p.getDateOfBirth().getYear() % 100); // get the last 2 digits of the birth year
-			fc.append(MONTHS[p.getDateOfBirth().getMonth()]);//0 is January
+		DateForFC dateofbirth = p.getDateOfBirth_fromInt();
+		if (dateofbirth.isCorrect()) {
+			if((dateofbirth.getYear() % 100)<10) fc.append(0);
+			fc.append(dateofbirth.getYear() % 100); // get the last 2 digits of the birth year
+			fc.append(MONTHS[dateofbirth.getMonth()-1]);//0 is January
 			if (p.getGender() == 'F') {
-				fc.append(p.getDateOfBirth().getDay() + 40);
+				fc.append(dateofbirth.getDay() + 40);
 			} else {
-				if (p.getDateOfBirth().getDay() < 10)
+				if (dateofbirth.getDay() < 10)
 					fc.append(0);
-				fc.append(p.getDateOfBirth().getDay());
+				fc.append(dateofbirth.getDay());
 			}
 
 		} else // if the date is not correct the fiscal code will result "DATEOFBIRTHINCORRECT"
@@ -146,17 +143,6 @@ public class FiscalCodeGenerator {
 	}
 
 	// CHECK IF IS CORRECT
-	public boolean checkIfDateIsCorrect(Date d) {
-		Calendar c = Calendar.getInstance();
-		c.setLenient(false);
-		c.setTime(d);
-		try {
-			c.getTime();
-		}catch (Exception e){
-			return false;
-		}
-		return true;
-	}
 	
 	public boolean isCF(String fiscalCode) {
 		//

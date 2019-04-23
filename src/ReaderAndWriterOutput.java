@@ -20,32 +20,46 @@ public class ReaderAndWriterOutput {
 	public void checkFiscalCodes() {
 	//Rimuovo dalla lista dei codici quelli invalidi
 	invalideCodes = new ArrayList<String>();
-	
 	for (String code: codes) {
-		if(generator.isCF(code) == false) {
+		
+		if(generator.isCF(code) == false) 
 			// se il codice fiscale è invalido lo aggiungo agli invalidi
 			invalideCodes.add(code);
-		}
 	}
-	codes.removeAll(invalideCodes);//rimuovo dall'array di codici quelli non validi
+	
+	//rimuovo dall'array di codici quelli non validi
+	codes.removeAll(invalideCodes);
+	System.out.println("I codici invalidi sono "+ codes.size());
+	
 	unpariedCodes = new ArrayList<String>();
-		
+	
 	for (Person p : listofPeople) {
 		String stringToCheck = p.getFiscalcode();
-		boolean check = false;
+		if(codes.indexOf(stringToCheck) >= 0)
 		//se il codice fiscale di una persona non è presente nella lista dei codici 
 		//aggiungo il suddetto ad unpariedCodes e sovrascrivo il codice fiscale della persona con la dicitura ASSENTE
-		for(String c: codes)
-			if(c.equals(stringToCheck)) check = true; //l'elemento è presente	
-			
-		if(check == false) {
+		{
 			unpariedCodes.add(stringToCheck);
 			p.setFiscalCode(ABSENT);
-			}
 		}
+	}
+	System.out.println("I codici spaiati sono " + unpariedCodes.size());
 	}
 
 	public void writeOutput() {
-		Person.setInputPeopleListToFile(listofPeople);
+		System.out.println("Scrittura file xml in corso...");
+		ArrayList <OutputPerson> temp_listToPrint; 
+		OutputClass printerXML;
+		temp_listToPrint = new ArrayList<OutputPerson>();
+		for (Person p: listofPeople) {
+			//per ogni persona creo "la persona di output" la aggiungo all'array che sarà stampato
+			OutputPerson pToPrint = new OutputPerson(p, p.getFiscalcode());
+			temp_listToPrint.add(pToPrint);
+		}
+		
+		printerXML = new OutputClass(temp_listToPrint, invalideCodes, unpariedCodes);
+		ArrayList<OutputClass> listToPrint = new ArrayList<OutputClass>();
+		listToPrint.add(printerXML);
+		OutputClass.saveInputPeopleListToFile(listToPrint);
 	}
 }

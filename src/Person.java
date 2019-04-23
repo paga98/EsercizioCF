@@ -1,7 +1,4 @@
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import apxmlmanager.APXMLManagerReader;
 import apxmlmanager.APXMLManagerWriter;
@@ -22,7 +19,8 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	private String surname;
 	private char gender;
 	private String municipality;
-	private Date dateOfBirth;
+	private String dateOfBirth;
+	private DateForFC dateOfBirth_fromInt; 
 	private String fiscalCode;
 
 	//attributes for xml
@@ -52,7 +50,7 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	
 	//consructors
 	public Person() {}
-	public Person(int id, String name, String surname, char gender, String municipality, Date dateOfBirth) {
+	public Person(int id, String name, String surname, char gender, String municipality, String dateOfBirth) {
 		this.setId(id);
 		this.setName(name);
 		this.setSurname(surname);
@@ -104,22 +102,6 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	public void setMunicipality(String municipality) {
 		this.municipality = municipality;
 	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	public void setDateOfBirth(String dateOfBirth) {
-		try {
-			this.dateOfBirth = new SimpleDateFormat("yyyy-MM-dd").parse(dateOfBirth); 
-		}catch(Exception e){
-			this.dateOfBirth = null;
-		}
-	}
-
 	public String getFiscalcode() {
 		return fiscalCode;
 	}
@@ -128,6 +110,20 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 		this.fiscalCode = fiscalCode;
 	}
 	
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+		dateOfBirth_fromInt = new DateForFC(dateOfBirth);
+	}
+
+	public DateForFC getDateOfBirth_fromInt() {
+		return dateOfBirth_fromInt;
+	}
+
+
 	@Override
 	public ArrayList<Person> parse(NodeList nodes) {
 		ArrayList<Person> list = new ArrayList<Person>();
@@ -175,7 +171,7 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 			inputPeople.appendChild(createElementForParsig(doc,surname_field,m.getSurname()));
 			inputPeople.appendChild(createElementForParsig(doc,gender_field,Character.toString(m.getGender())));
 			inputPeople.appendChild(createElementForParsig(doc,municipality_field,m.getMunicipality()));
-			inputPeople.appendChild(createElementForParsig(doc,dateOfBirth_field,new SimpleDateFormat("yyyy-MM-dd").format(m.getDateOfBirth())));
+			inputPeople.appendChild(createElementForParsig(doc,dateOfBirth_field,m.getDateOfBirth()));
 			root.appendChild(inputPeople);
 		}
         doc.appendChild(root);

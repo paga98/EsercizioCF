@@ -3,9 +3,16 @@
 /MainCL.class
 /Municipality.class
 /Person.class
+/ReaderAndWriterOutput.class
 /apxmlmanager/
 /codiciFiscali.xml
 /comuni.xml
 /generazioneCF.txt
 /inputPersone.xml
-/ReaderAndWriter.class
+/OutputClass.class
+/OutputPerson.class
+/Date.class
+/DateForFC.class
+/MainClass.class
+/OutputClass.xml
+/codiciPersone.xml
