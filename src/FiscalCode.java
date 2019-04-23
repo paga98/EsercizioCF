@@ -15,7 +15,7 @@ public class FiscalCode implements IAPXMLWriteable<String>,IAPXMLReadable<String
 {
 	private String code;
 	//final properties for xml
-	public static final String filePath = "C:\\Users\\admin\\Desktop\\codiciFiscali.xml";
+	public static final String filePath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\codiciFiscali.xml";
 	public static final String rootName = "codici";
 	public static final String code_field = "codice";
 

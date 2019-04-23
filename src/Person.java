@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Person  implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
+public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 {
 	
 	//private attributes
@@ -26,7 +26,8 @@ public class Person  implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	private String fiscalCode;
 
 	//attributes for xml
-	private static String filePath = "C:\\Users\\admin\\Desktop\\inputPersone.xml";
+	private static String filePath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\inputPersone.xml";
+	private static String outputPath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\output.xml";
 	public static final String rootName = "persone";
 	public static final String className = "persona";
 	public static final String name_field = "nome";
@@ -34,7 +35,9 @@ public class Person  implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	public static final String gender_field = "sesso";
 	public static final String municipality_field = "comune_nascita";
 	public static final String dateOfBirth_field = "data_nascita";
+	public static final String fiscalcode_field = "codice_fiscale";
 	public static final String id_field = "id";
+	
 
 	
 	public static ArrayList<Person> getInputPeopleListFromFile() {
@@ -44,7 +47,7 @@ public class Person  implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	
 	public static boolean setInputPeopleListToFile(ArrayList<Person> list) {
 		IAPXMLWriteable<Person> ir = new Person();
-		return new APXMLManagerWriter<Person>(ir,filePath,rootName).write(list);
+		return new APXMLManagerWriter<Person>(ir,outputPath,rootName).write(list);
 	}
 	
 	

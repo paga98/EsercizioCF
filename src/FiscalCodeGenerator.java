@@ -58,7 +58,7 @@ public class FiscalCodeGenerator {
 
 		if (c.length() < 3) {
 			int n = 3 - c.length();
-			c.append(v.substring(0, n)); // add vowels after the consonants to reach the required length
+			c.append(v.substring(0, n-1)); // add vowels after the consonants to reach the required length
 		}
 
 		fc.append(c);
@@ -94,7 +94,7 @@ public class FiscalCodeGenerator {
 		if (checkIfDateIsCorrect(p.getDateOfBirth())) {
 			if((p.getDateOfBirth().getYear() % 100)<10) fc.append(0);
 			fc.append(p.getDateOfBirth().getYear() % 100); // get the last 2 digits of the birth year
-			fc.append(MONTHS[p.getDateOfBirth().getMonth() - 1]);
+			fc.append(MONTHS[p.getDateOfBirth().getMonth()]);//0 is January
 			if (p.getGender() == 'F') {
 				fc.append(p.getDateOfBirth().getDay() + 40);
 			} else {

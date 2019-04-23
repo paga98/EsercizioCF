@@ -18,7 +18,7 @@ public class Municipality implements IAPXMLWriteable<Municipality>,IAPXMLReadabl
 	private String code;
 	
 	//file w/r path
-	private static String filePath = "C:\\Users\\admin\\Desktop\\comuni.xml";
+	private static String filePath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\comuni.xml";
 	
 	//final properties for xml
 	public static final String rootName = "comuni";
