@@ -27,7 +27,6 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 
 	//attributes for xml
 	private static String filePath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\inputPersone.xml";
-	private static String outputPath = "C:\\Users\\Massimiliano\\Desktop\\Progetto Arnaldo\\CodiceFiscale\\EsercizioCF\\src\\output.xml";
 	public static final String rootName = "persone";
 	public static final String className = "persona";
 	public static final String name_field = "nome";
@@ -47,7 +46,7 @@ public class Person implements IAPXMLWriteable<Person>,IAPXMLReadable<Person>
 	
 	public static boolean setInputPeopleListToFile(ArrayList<Person> list) {
 		IAPXMLWriteable<Person> ir = new Person();
-		return new APXMLManagerWriter<Person>(ir,outputPath,rootName).write(list);
+		return new APXMLManagerWriter<Person>(ir,filePath,rootName).write(list);
 	}
 	
 	

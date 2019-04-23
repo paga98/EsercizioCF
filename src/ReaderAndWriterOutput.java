@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
-public class ReaderAndWriter {
+public class ReaderAndWriterOutput {
 	private ArrayList<Person> listofPeople;
 	private ArrayList<String> codes;
 	private ArrayList<String> invalideCodes, unpariedCodes;
 	private static String ABSENT = "ASSENTE";
 	private FiscalCodeGenerator generator = new FiscalCodeGenerator();
 
-	public ReaderAndWriter() {
+	public ReaderAndWriterOutput() {
 		listofPeople = Person.getInputPeopleListFromFile();
 		codes = FiscalCode.getList();
 	}
