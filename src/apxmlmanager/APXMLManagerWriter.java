@@ -47,7 +47,7 @@ public class APXMLManagerWriter<T> extends APXMLManagerBase<T> {
 	        Attr attr = document.createAttribute("numero");
             attr.setValue(Integer.toString(list_to_write.size()));
             root.setAttributeNode(attr);
-	        document = this.context.parse(document,root,list_to_write);
+	        this.context.parse(document,root,list_to_write);
 	        //save file
 	        try {
 	        	TransformerFactory transformerFactory = TransformerFactory.newInstance();
